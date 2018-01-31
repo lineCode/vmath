@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>表达式 - 函数</title>
+    <meta charset="utf-8">
+    <script src="../../dev-lib/jquery-1.10.2.min.js"></script>
+    <script src="../../dev-lib/kitygraph.all.js"></script>
+    <script src="../../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../../src'
+        });
+    </script>
+    <script src="../../dev-lib/start.js"></script>
+    <script src="../../dev-lib/exports.js"></script>
+    <script src="../../dev-lib/dev-start.js"></script>
+    <!--<script src="../../dist/kity-formula.all.js"></script>-->
+    <script>
+        window.onload = function () {
+
+            kf.ResourceManager.ready( function ( Formula ) {
+
+                var formula = new Formula( document.getElementById( "container" ) );
+
+                var exps = [
+                    new kf.FunctionExpression( "lim", "a+b", null, "n\\to\\3" )
+                ];
+
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
+
+                formula.toPNG( function ( img ) {
+                    var image = new Image();
+                    image.src = img;
+                    document.body.appendChild( image );
+                } );
+
+            }, {
+                path: '../../src/resource/'
+            } );
+
+        };
+
+    </script>
+</head>
+<body>
+    <h1>函数表达式</h1>
+    <p>
+        构造方法： new kf.Text( "\\\\to \\\\gets \\\\subseteq" );
+    </p>
+    <p>
+        特殊符号其本质仍然是一个文本序列，不同于基本字符的是这些符号需要通过转义之后才能输入。注：希腊字符也是特殊符号的一类。
+    </p>
+    <div id="container"></div>
+</body>
+</html>

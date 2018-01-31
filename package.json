@@ -1,0 +1,20 @@
+{
+  "name": "vmath",
+  "version": "1.0.0",
+  "description": "Vue component  support of visual math editor based on kityformula-editor of Baidu FEX",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanceeasleaf/vmath.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vanceeasleaf/vmath/issues"
+  },
+  "homepage": "https://github.com/vanceeasleaf/vmath#readme"
+}

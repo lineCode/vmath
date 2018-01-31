@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>基础文本字符</title>
+    <meta charset="utf-8">
+    <style>
+        /*@font-face {*/
+            /*font-family: 'KF AMS MAIN';*/
+            /*src: url( '../src/resource/KF_AMS_MAIN.woff' );*/
+        /*}*/
+
+    </style>
+    <script src="../dev-lib/jquery-1.10.2.min.js"></script>
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/start.js"></script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <!--<script src="../dist/kity-formula.all.js"></script>-->
+    <script>
+        window.onload = function () {
+
+            var formula = null;
+
+            kf.ResourceManager.ready( function ( Formula ) {
+
+                formula = new Formula( document.getElementById( "container" ) );
+
+                var t = new kf.HatExpression( "a+b" );
+
+                t.setType( "overrightarrow" );
+
+                var exps = [
+                        new kf.FunctionExpression( "sin" )
+////                        t,
+//                        new kf.TextExpression( "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "KF AMS BOLD" ),
+////                        new kf.BracketsExpression( "\\langle\\", "\\rangle\\", new kf.FractionExpression( "a", "b" ) ),
+////                    new kf.UnderbraceExpression( "a", "a" ),
+//                    new kf.MatrixExpression( 12, "+", 2, "=", 3, 4, "+", 5, "=", 329 ).setColNum( 5 ).setType( 'p' ),
+//                    new kf.MatrixExpression( 12, "+", 2, "=", 3 ).setColNum( 5 ).setType( 'p' )
+//                    new kf.TextExpression( "\\prep\\ asdf" )
+//                        new kf.WideparenExpression( "asdx" )
+                ];
+
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
+
+            }, {
+                path: '../src/resource/'
+            } );
+
+            document.onkeydown = function ( e ) {
+
+                if ( ( e.ctrlKey || e.metaKey ) && e.keyCode === 83 ) {
+
+                    e.preventDefault();
+
+                    formula.toPNG( function ( url ) {
+
+                        var image = new Image();
+
+                        image.src = url;
+
+                        image.style.border = "1px solid black";
+
+                        document.body.appendChild( image );
+
+                    } );
+
+                }
+
+            };
+
+        };
+
+    </script>
+</head>
+<body>
+<h1>基本字符集</h1>
+<p style="font-family: 'KF AMS MAIN'">
+    构造方法： new kf.Text( "abc" );
+</p>
+<p>
+    基本字符集包含了0-9，a-z，A-Z，+，-，=，<，>，'，|，[，]，(，) 等字符， 这些字符可以不经转义直接输入。
+</p>
+<div id="container"></div>
+</body>
+</html>
